@@ -1,7 +1,7 @@
 package config
 
 import (
-	"api/handler"
+	"api/app/handler"
 
 	"github.com/labstack/echo/v4"
 )

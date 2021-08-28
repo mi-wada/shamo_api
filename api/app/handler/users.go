@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"api/service"
+	"api/app/service"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

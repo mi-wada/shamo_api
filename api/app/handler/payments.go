@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"api/model"
-	"api/service"
+	"api/app/model"
+	"api/app/service"
 	"net/http"
 	"strconv"
 

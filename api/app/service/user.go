@@ -1,8 +1,8 @@
 package service
 
 import (
-	"api/lib"
-	"api/model"
+	"api/app/lib"
+	"api/app/model"
 )
 
 func CreateUser(user *model.User) *model.User {

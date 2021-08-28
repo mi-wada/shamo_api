@@ -1,8 +1,8 @@
 package service
 
 import (
-	"api/lib"
-	"api/model"
+	"api/app/lib"
+	"api/app/model"
 )
 
 func GetPaymentsByRoomId(roomId string) []model.Payment {
