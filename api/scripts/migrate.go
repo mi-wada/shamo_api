@@ -1,8 +1,8 @@
 package main
 
 import (
-	"api/lib"
-	"api/model"
+	"api/app/lib"
+	"api/app/model"
 	"fmt"
 )
 
