@@ -30,8 +30,9 @@ func CreatePayment(c echo.Context) (err error) {
 
 func DeletePayment(c echo.Context) (err error) {
 	id, _ := strconv.Atoi(c.Param("id"))
+	roomId := c.Param("roomId")
 
-	id = service.DeletePayment(id)
+	id = service.DeletePayment(uint(id), roomId)
 
 	return c.JSON(http.StatusOK, id)
 }
