@@ -32,7 +32,7 @@ func DeletePayment(c echo.Context) (err error) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	roomId := c.Param("roomId")
 
-	id = service.DeletePayment(uint(id), roomId)
+	id = int(service.DeletePayment(uint(id), roomId))
 
 	return c.JSON(http.StatusOK, id)
 }
