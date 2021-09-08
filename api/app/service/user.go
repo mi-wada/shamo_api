@@ -7,6 +7,8 @@ import (
 
 func CreateUser(user *model.User) *model.User {
 	db := lib.ConnectDB()
+	closer, _ := db.DB()
+	defer closer.Close()
 
 	db.Create(user)
 
@@ -15,6 +17,8 @@ func CreateUser(user *model.User) *model.User {
 
 func GetUsersByRoomId(roomId string) []model.User {
 	db := lib.ConnectDB()
+	closer, _ := db.DB()
+	defer closer.Close()
 
 	var users []model.User
 	db.Find(&users, "Room_id = ?", roomId)

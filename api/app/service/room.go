@@ -7,6 +7,8 @@ import (
 
 func CreateRoom(room *model.Room) *model.Room {
 	db := lib.ConnectDB()
+	closer, _ := db.DB()
+	defer closer.Close()
 
 	db.Create(room)
 
