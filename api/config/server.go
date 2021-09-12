@@ -11,7 +11,7 @@ import (
 func SettingForServer(server *echo.Echo) {
 	server.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
-		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAccessControlRequestHeaders, echo.HeaderAccessControlRequestMethod, echo.HeaderOrigin},
 	}))
 	server.Use(middleware.Recover())
 	server.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
