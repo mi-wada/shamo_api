@@ -12,11 +12,6 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: $MYSQL_DATABASE
-      MYSQL_USER: $MYSQL_USER
-      MYSQL_PASSWORD: $MYSQL_PASSWORD
-      TZ: Asia/Tokyo
   api:
     build:
       context: ./api
