@@ -4,7 +4,6 @@ import (
 	"api/app/model"
 	"api/app/service"
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -29,10 +28,12 @@ func CreatePayment(c echo.Context) (err error) {
 }
 
 func DeletePayment(c echo.Context) (err error) {
-	id, _ := strconv.Atoi(c.Param("id"))
-	roomId := c.Param("roomId")
+	payment := new(model.Payment)
+	if err = c.Bind(payment); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
 
-	id = int(service.DeletePayment(uint(id), roomId))
+	id := int(service.DeletePayment(payment))
 
 	return c.JSON(http.StatusOK, id)
 }

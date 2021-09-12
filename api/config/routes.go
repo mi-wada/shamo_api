@@ -7,9 +7,11 @@ import (
 )
 
 func SetRoutes(server *echo.Echo) {
-	server.GET("/rooms/:roomId/users", handler.GetUsers)
+	server.POST("/rooms", handler.CreateRoom)
 
+	server.GET("/rooms/:roomId/users", handler.GetUsers)
 	server.GET("/rooms/:roomId/payments", handler.GetPayments)
-	server.POST("/payments", handler.CreatePayment)
-	server.DELETE("/payments/:id", handler.DeletePayment)
+
+	server.POST("/rooms/:roomId/payments", handler.CreatePayment)
+	server.DELETE("/rooms/:roomId/payments", handler.DeletePayment)
 }

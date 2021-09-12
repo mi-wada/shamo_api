@@ -5,12 +5,15 @@ import (
 	"api/app/model"
 )
 
-func CreateRoom(room *model.Room) *model.Room {
+func CreateRoom() *model.Room {
 	db := lib.ConnectDB()
 	closer, _ := db.DB()
 	defer closer.Close()
 
-	db.Create(room)
+	roomId := lib.CreateRandomStr(32)
+	room := model.Room{Room_id: roomId}
 
-	return room
+	db.Create(&room)
+
+	return &room
 }

@@ -22,10 +22,10 @@ func CreatePayment(payment *model.Payment) *model.Payment {
 	return payment
 }
 
-func DeletePayment(paymentId uint, roomId string) uint {
+func DeletePayment(payment *model.Payment) uint {
 	db := lib.ConnectDB()
 	closer, _ := db.DB()
 	defer closer.Close()
-	db.Where("id = ? AND Room_id = ?", paymentId, roomId).Delete(&model.Payment{})
-	return paymentId
+	db.Delete(payment)
+	return payment.ID
 }

@@ -7,7 +7,7 @@ import (
 type Payment struct {
 	gorm.Model
 	Price    int32  `json:"price"`
-	Room_id  string `json:"room_id"`
+	Room_id  string `json:"room_id" param:"roomId"`
 	User_id  uint   `json:"user_id"`
 	What     string `json:"what"`
 	Is_valid bool
