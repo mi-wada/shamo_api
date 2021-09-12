@@ -9,7 +9,10 @@ import (
 )
 
 func SettingForServer(server *echo.Echo) {
-	server.Use(middleware.CORS())
+	server.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
 	server.Use(middleware.Recover())
 	server.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
 		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
