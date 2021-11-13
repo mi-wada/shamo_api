@@ -3,6 +3,7 @@ package service
 import (
 	"api/app/model"
 	"os"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -24,6 +25,7 @@ func CreatePayment(payment *model.Payment) *model.Payment {
 	db := dynamo.New(sess, &aws.Config{Region: aws.String(os.Getenv("AWS_DEFAULT_REGION"))})
 	table := db.Table("shamo_payment")
 	payment.Id = uuid.NewString()
+	payment.CreatedAt = time.Now()
 	table.Put(payment).Run()
 	return payment
 }
