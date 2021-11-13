@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/google/uuid"
 	"github.com/guregu/dynamo"
 )
 
@@ -22,6 +23,7 @@ func CreatePayment(payment *model.Payment) *model.Payment {
 	sess := session.Must(session.NewSession())
 	db := dynamo.New(sess, &aws.Config{Region: aws.String(os.Getenv("AWS_DEFAULT_REGION"))})
 	table := db.Table("shamo_payment")
+	payment.Id = uuid.NewString()
 	table.Put(payment).Run()
 	return payment
 }
