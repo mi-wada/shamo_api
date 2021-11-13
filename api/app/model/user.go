@@ -1,11 +1,7 @@
 package model
 
-import (
-	"gorm.io/gorm"
-)
-
 type User struct {
-	gorm.Model
-	Name    string
-	Room_id string
+	Id      int    `dynamo:"id"`
+	Name    string `dynamo:"namo"`
+	Room_id string `dynamo:"room_id"`
 }
