@@ -29,7 +29,7 @@ func GetUsersByRoomId(roomId string) []model.User {
 	table := db.Table("shamo_user")
 
 	var users []model.User
-	table.Scan().Filter("room_id = ?", roomId).All(users)
+	table.Scan().Filter("room_id = ?", roomId).All(&users)
 
 	return users
 }
