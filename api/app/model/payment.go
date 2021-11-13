@@ -1,14 +1,10 @@
 package model
 
-import (
-	"gorm.io/gorm"
-)
-
 type Payment struct {
-	gorm.Model
-	Price    int32  `json:"price"`
-	Room_id  string `json:"room_id" param:"roomId"`
-	User_id  uint   `json:"user_id"`
-	What     string `json:"what"`
+	Id       string `dynamo:"id"`
+	Price    int32  `json:"price" dynamo:"price"`
+	Room_id  string `json:"room_id" param:"roomId" dynamo"room_id"`
+	User_id  uint   `json:"user_id" dynamo:"user_id"`
+	What     string `json:"what" dynamo:"what"`
 	Is_valid bool
 }

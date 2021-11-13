@@ -33,7 +33,7 @@ func DeletePayment(c echo.Context) (err error) {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
-	id := int(service.DeletePayment(payment))
+	id := service.DeletePayment(payment)
 
 	return c.JSON(http.StatusOK, id)
 }
