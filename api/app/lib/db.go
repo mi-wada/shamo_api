@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	DBUsername = os.Getenv("MYSQL_USER")
+	DBUsername = os.Getenv("MYSQL_USERNAME")
 	DBPassword = os.Getenv("MYSQL_PASSWORD")
 	DBHost     = os.Getenv("MYSQL_HOST")
 	DBPort     = os.Getenv("MYSQL_PORT")
