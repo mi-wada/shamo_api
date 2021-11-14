@@ -34,8 +34,8 @@ func DeletePayment(payment *model.Payment) string {
 	sess := session.Must(session.NewSession())
 	db := dynamo.New(sess, &aws.Config{Region: aws.String(os.Getenv("AWS_DEFAULT_REGION"))})
 	table := db.Table("shamo_payment")
-	var payment_to_delete model.Payment
-	table.Get("id", payment.Id).One(&payment_to_delete)
-	table.Delete("id", payment.Id).Range("created_at", payment_to_delete.CreatedAt).Run()
+	var payment_to_delete model.Payment[]
+	table.Get("id", payment.Id).All(&payment_to_delete)
+	table.Delete("id", payment.Id).Range("created_at", payment_to_delete[0].CreatedAt).Run()
 	return payment.Id
 }
