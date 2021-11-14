@@ -27,5 +27,6 @@ func SettingForServer(server *echo.Echo) {
 		fmt.Fprintf(os.Stderr, "Headers: %v\n", c.Request().Header)
 		fmt.Fprintf(os.Stderr, "Method: %v\n", c.Request().Method)
 		fmt.Fprintf(os.Stderr, "MY_AWS_ACCESS_KEY_ID: %v\n", os.Getenv("MY_AWS_ACCESS_KEY_ID"))
+		fmt.Fprintf(os.Stderr, "AWS_ACCESS_KEY_ID: %v\n", os.Getenv("AWS_ACCESS_KEY_ID"))
 	}))
 }
