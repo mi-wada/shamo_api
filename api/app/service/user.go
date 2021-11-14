@@ -28,7 +28,7 @@ func GetUsersByRoomId(roomId string) []model.User {
 	sess := session.Must(session.NewSession())
 	db := dynamo.New(sess,
 		&aws.Config{
-			Region:      aws.String(os.Getenv("AWS_DEFAULT_REGION")),
+			Region:      aws.String(os.Getenv("MY_AWS_DEFAULT_REGION")),
 			Credentials: credentials.NewStaticCredentials(os.Getenv("MY_AWS_ACCESS_KEY_ID"), os.Getenv("MY_AWS_SECRET_ACCESS_KEY"), ""),
 		})
 	table := db.Table("shamo_user")
