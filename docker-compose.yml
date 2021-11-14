@@ -1,31 +1,25 @@
-version: '3'
+version: '3.8'
 
 services:
-  db:
-    build:
-      context: ./db
-      dockerfile: Dockerfile
-    env_file:
-      - .env
-      - ./docker/env/.dev.env
-    ports:
-      - 3306:3306
-    volumes:
-      - db-store:/var/lib/mysql
   api:
     build:
-      context: ./api
-      dockerfile: Dockerfile
-    command: ["go", "run", "main.go"]
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    command: "go run main.go"
     depends_on:
       - db
     env_file:
       - .env
-      - ./docker/env/.dev.env
+      - ./docker/env/.local.env
     ports:
       - 8080:8080
     volumes:
       - ./api:/app
-
-volumes:
-  db-store:
+  db:
+    image: amazon/dynamodb-local:latest
+    ports:
+      - 8000:8000
+    volumes:
+      - ./docker/db:/home/dynamodblocal/data
+    working_dir: /home/dynamodblocal
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
