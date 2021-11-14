@@ -2,6 +2,7 @@ package handler
 
 import (
 	"api/config"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -17,7 +18,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	os.Setenv("AWS_ACCESS_KEY_ID", os.Getenv("MY_AWS_ACCESS_KEY_ID"))
 	os.Setenv("AWS_SECRET_ACCESS_KEY", os.Getenv("MY_AWS_SECRET_ACCESS_KEY"))
 	os.Setenv("AWS_DEFAULT_REGION", os.Getenv("MY_AWS_DEFAULT_REGION"))
-	println(os.Getenv("MY_AWS_ACCESS_KEY_ID"))
 
-	server.ServeHTTP(w, r)
+	fmt.Fprintf(w, os.Getenv("MY_AWS_ACCESS_KEY_ID"))
+	// server.ServeHTTP(w, r)
 }
