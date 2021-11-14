@@ -16,7 +16,7 @@ func GetPaymentsByRoomId(roomId string) []model.Payment {
 	db := dynamo.New(sess, &aws.Config{Region: aws.String(os.Getenv("AWS_DEFAULT_REGION"))})
 	table := db.Table("shamo_payment")
 	var payments []model.Payment
-	table.Scan().Filter("room_id = ?", roomId).All(&payments)
+	table.Get("room_id", roomId).Index("room_id-created_at-index").Order(false).All(&payments)
 	return payments
 }
 
