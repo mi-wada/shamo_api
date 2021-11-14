@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
 )
@@ -25,7 +26,11 @@ func CreateUser(user *model.User) *model.User {
 
 func GetUsersByRoomId(roomId string) []model.User {
 	sess := session.Must(session.NewSession())
-	db := dynamo.New(sess, &aws.Config{Region: aws.String(os.Getenv("AWS_DEFAULT_REGION"))})
+	db := dynamo.New(sess,
+		&aws.Config{
+			Region:      aws.String(os.Getenv("AWS_DEFAULT_REGION")),
+			Credentials: credentials.NewStaticCredentials(os.Getenv("MY_AWS_ACCESS_KEY_ID"), os.Getenv("MY_AWS_SECRET_ACCESS_KEY"), ""),
+		})
 	table := db.Table("shamo_user")
 
 	var users []model.User
