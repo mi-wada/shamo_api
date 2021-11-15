@@ -19,9 +19,9 @@ func GetPayments(c echo.Context) (err error) {
 
 func CreatePayment(c echo.Context) (err error) {
 	payment_service := application.NewPaymentService(repository.NewPaymentRepository())
-	price, _ := strconv.Atoi(c.Param("price"))
-	userId, _ := strconv.Atoi(c.Param("user_id"))
-	payment := payment_service.CreatePayment(price, c.Param("room_id"), userId, c.Param("what"))
+	price, _ := strconv.Atoi(c.FormValue("price"))
+	userId, _ := strconv.Atoi(c.FormValue("user_id"))
+	payment := payment_service.CreatePayment(price, c.Param("room_id"), userId, c.FormValue("what"))
 
 	return c.JSON(http.StatusOK, payment)
 }
