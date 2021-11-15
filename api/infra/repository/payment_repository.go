@@ -2,7 +2,7 @@ package repository
 
 import (
 	"api/domain/entity"
-	"api/infra"
+	"api/infra/database"
 
 	"github.com/guregu/dynamo"
 )
@@ -13,7 +13,7 @@ type PaymentRepository struct {
 
 func NewPaymentRepository() *PaymentRepository {
 	payment_repository := new(PaymentRepository)
-	payment_repository.db = infra.ConnectDB()
+	payment_repository.db = database.Connect()
 	return payment_repository
 }
 

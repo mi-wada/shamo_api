@@ -1,4 +1,4 @@
-package infra
+package database
 
 import (
 	"os"
@@ -9,7 +9,7 @@ import (
 	"github.com/guregu/dynamo"
 )
 
-func ConnectDB() *dynamo.DB {
+func Connect() *dynamo.DB {
 	sess := session.Must(session.NewSession())
 	return dynamo.New(sess,
 		&aws.Config{

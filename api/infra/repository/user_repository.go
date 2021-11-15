@@ -2,7 +2,7 @@ package repository
 
 import (
 	"api/domain/entity"
-	"api/infra"
+	"api/infra/database"
 
 	"github.com/guregu/dynamo"
 )
@@ -13,7 +13,7 @@ type UserRepository struct {
 
 func NewUserRepository() *UserRepository {
 	user_repository := new(UserRepository)
-	user_repository.db = infra.ConnectDB()
+	user_repository.db = database.Connect()
 	return user_repository
 }
 
