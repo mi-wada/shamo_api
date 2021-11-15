@@ -1,17 +1,12 @@
 package handler
 
 import (
-	"api/config"
+	"api/infra"
 	"net/http"
-
-	"github.com/labstack/echo/v4"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	server := echo.New()
+	server := infra.NewServer()
 
-	config.SettingForServer(server)
-	config.SetRoutes(server)
-
-	server.ServeHTTP(w, r)
+	server.RunForServerless(w, r)
 }

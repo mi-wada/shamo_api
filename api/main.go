@@ -1,16 +1,10 @@
 package main
 
 import (
-	"api/config"
-
-	"github.com/labstack/echo/v4"
+	"api/infra"
 )
 
 func main() {
-	server := echo.New()
-
-	config.SettingForServer(server)
-	config.SetRoutes(server)
-
-	server.Logger.Fatal(server.Start(":8080"))
+	server := infra.NewServer()
+	server.Run(":8080")
 }
