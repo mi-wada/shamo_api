@@ -31,7 +31,6 @@ aws dynamodb create-table \
     AttributeName=room_id,AttributeType=S \
   --key-schema \
     AttributeName=id,KeyType=HASH \
-    AttributeName=created_at,KeyType=RANGE \
   --global-secondary-indexes \
     "[{
       \"IndexName\": \"room_id-created_at-index\",

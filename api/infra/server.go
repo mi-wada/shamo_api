@@ -61,8 +61,8 @@ func (s *Server) setRoutes() {
 	s.server.POST("/rooms", handler.CreateRoom)
 
 	s.server.GET("/rooms/:roomId/users", handler.GetUsers)
-	s.server.GET("/rooms/:roomId/payments", handler.GetPayments)
 
+	s.server.GET("/rooms/:roomId/payments", handler.GetPayments)
 	s.server.POST("/rooms/:roomId/payments", handler.CreatePayment)
 	s.server.DELETE("/rooms/:roomId/payments", handler.DeletePayment)
 }
