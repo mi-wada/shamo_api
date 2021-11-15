@@ -1,7 +1,7 @@
-package infra
+package infrastructure
 
 import (
-	"api/infra/interface/rest"
+	"api/infrastructure/interface/rest"
 	"fmt"
 	"net/http"
 	"os"

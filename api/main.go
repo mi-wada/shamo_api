@@ -1,10 +1,10 @@
 package main
 
 import (
-	"api/infra"
+	"api/infrastructure"
 )
 
 func main() {
-	server := infra.NewServer()
+	server := infrastructure.NewServer()
 	server.Run(":8080")
 }

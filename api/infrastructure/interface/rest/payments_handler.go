@@ -2,7 +2,7 @@ package rest
 
 import (
 	"api/application"
-	"api/infra/repository"
+	"api/infrastructure/repository"
 	"net/http"
 	"strconv"
 

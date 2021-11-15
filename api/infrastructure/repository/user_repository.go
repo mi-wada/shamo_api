@@ -2,7 +2,7 @@ package repository
 
 import (
 	"api/domain/entity"
-	"api/infra/database"
+	"api/infrastructure/database"
 
 	"github.com/guregu/dynamo"
 )
