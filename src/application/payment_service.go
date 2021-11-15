@@ -3,6 +3,7 @@ package application
 import (
 	"api/domain/entity"
 	"api/domain/repository"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -23,11 +24,12 @@ func (s *PaymentService) GetPaymentListByRoomId(roomId string) []entity.Payment 
 
 func (s *PaymentService) CreatePayment(price int, roomId string, userId int, what string) *entity.Payment {
 	payment := entity.Payment{
-		Id:     uuid.NewString(),
-		Price:  price,
-		RoomId: roomId,
-		UserId: userId,
-		What:   what,
+		Id:        uuid.NewString(),
+		Price:     price,
+		RoomId:    roomId,
+		UserId:    userId,
+		What:      what,
+		CreatedAt: time.Now(),
 	}
 
 	s.payment_repository.Save(&payment)
