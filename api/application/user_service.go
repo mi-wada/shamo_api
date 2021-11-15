@@ -16,7 +16,7 @@ func NewUserService(user_repository repository.UserRepository) *UserService {
 }
 
 func (s *UserService) GetUserListByRoomId(roomId string) []entity.User {
-	return s.user_repository.GetAllByRoomId(roomId)
+	return s.user_repository.GetListByRoomId(roomId)
 }
 
 func (s *UserService) CreateUser(id int, name string, roomId string) *entity.User {

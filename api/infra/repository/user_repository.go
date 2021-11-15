@@ -17,11 +17,11 @@ func NewUserRepository() *UserRepository {
 	return user_repository
 }
 
-func (r *UserRepository) GetAllByRoomId(roomId string) []entity.User {
+func (r *UserRepository) GetListByRoomId(roomId string) []entity.User {
 	table := r.db.Table("shamo_user")
 
 	var users []entity.User
-	table.Get("room_id", roomId).All(&users)
+	table.Scan().Filter("room_id = ?", roomId).All(&users)
 	return users
 }
 
