@@ -21,9 +21,7 @@ func CreatePayment(c echo.Context) (err error) {
 	payment_service := application.NewPaymentService(repository.NewPaymentRepository())
 
 	payment := new(entity.Payment)
-	if err = c.Bind(payment); err != nil {
-		return
-	}
+	_ = c.Bind(payment)
 	payment = payment_service.CreatePayment(payment.Price, payment.RoomId, payment.UserId, payment.What)
 
 	return c.JSON(http.StatusOK, payment)
