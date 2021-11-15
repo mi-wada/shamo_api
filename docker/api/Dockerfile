@@ -6,6 +6,6 @@ RUN apk update && \
 
 WORKDIR /app
 
-COPY ["./api/go.mod", "./api/go.sum", "./"]
+COPY ["./src/go.mod", "./src/go.sum", "./"]
 
 RUN go mod download
