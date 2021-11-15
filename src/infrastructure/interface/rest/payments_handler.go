@@ -2,9 +2,9 @@ package rest
 
 import (
 	"api/application"
+	"api/domain/entity"
 	"api/infrastructure/repository"
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -19,15 +19,24 @@ func GetPayments(c echo.Context) (err error) {
 
 func CreatePayment(c echo.Context) (err error) {
 	payment_service := application.NewPaymentService(repository.NewPaymentRepository())
-	price, _ := strconv.Atoi(c.FormValue("price"))
-	userId, _ := strconv.Atoi(c.FormValue("user_id"))
-	payment := payment_service.CreatePayment(price, c.Param("room_id"), userId, c.FormValue("what"))
+
+	payment := new(entity.Payment)
+	if err = c.Bind(payment); err != nil {
+		return
+	}
+	payment = payment_service.CreatePayment(payment.Price, payment.RoomId, payment.UserId, payment.What)
 
 	return c.JSON(http.StatusOK, payment)
 }
 
 func DeletePayment(c echo.Context) (err error) {
 	payment_service := application.NewPaymentService(repository.NewPaymentRepository())
-	payment_service.DeletePayment(c.Param("id"))
+
+	payment := new(entity.Payment)
+	if err = c.Bind(payment); err != nil {
+		return
+	}
+	payment_service.DeletePayment(payment.Id)
+
 	return c.JSON(http.StatusOK, "")
 }
