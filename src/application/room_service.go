@@ -19,8 +19,7 @@ func NewRoomService(room_repository repository.RoomRepository) *RoomService {
 
 func (s *RoomService) CreateRoom() *entity.Room {
 	room := entity.Room{
-		Id:     uuid.NewString(),
-		RoomId: uuid.NewString(),
+		Id: uuid.NewString(),
 	}
 	s.room_repository.Save(&room)
 	return &room
