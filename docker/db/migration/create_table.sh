@@ -22,6 +22,19 @@ aws dynamodb create-table \
   --provisioned-throughput \
     ReadCapacityUnits=10,WriteCapacityUnits=5
 
+# create table `shamo_room_member`
+aws dynamodb create-table \
+  --table-name shamo_room_member \
+  --attribute-definitions \
+    AttributeName=room_id,AttributeType=S \
+    AttributeName=user_id,AttributeType=S \
+  --key-schema \
+    AttributeName=room_id,KeyType=HASH \
+    AttributeName=user_id,KeyType=RANGE \
+  --endpoint-url $ENDPOINT_URL \
+  --provisioned-throughput \
+    ReadCapacityUnits=10,WriteCapacityUnits=5
+
 # create table `shamo_payment`
 aws dynamodb create-table \
   --table-name shamo_payment \

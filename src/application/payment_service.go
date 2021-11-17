@@ -22,7 +22,7 @@ func (s *PaymentService) GetPaymentListByRoomId(roomId string) []entity.Payment 
 	return s.payment_repository.GetListByRoomId(roomId)
 }
 
-func (s *PaymentService) CreatePayment(price int, roomId string, userId int, what string) *entity.Payment {
+func (s *PaymentService) CreatePayment(price int, roomId string, userId string, what string) *entity.Payment {
 	payment := entity.Payment{
 		Id:        uuid.NewString(),
 		Price:     price,
