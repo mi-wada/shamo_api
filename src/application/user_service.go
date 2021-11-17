@@ -19,7 +19,7 @@ func (s *UserService) GetUserListByRoomId(roomId string) []entity.User {
 	return s.user_repository.GetListByRoomId(roomId)
 }
 
-func (s *UserService) CreateUser(id int, name string, roomId string) *entity.User {
+func (s *UserService) CreateUser(id string, name string, roomId string) *entity.User {
 	user := entity.User{
 		Id:     id,
 		Name:   name,
