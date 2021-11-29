@@ -23,7 +23,7 @@ func Login(c echo.Context) (err error) {
 			claims.Name,
 			"", // TODO: 消去
 			claims.Email,
-			claims.Picture,
+			claims.PictureUrl,
 		)
 	}
 

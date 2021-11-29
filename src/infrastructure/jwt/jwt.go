@@ -11,9 +11,9 @@ import (
 const CERTS_URL = "https://www.googleapis.com/oauth2/v1/certs"
 
 type CustomClaims struct {
-	Email   string `json: email`
-	Picture string `json: picture`
-	Name    string `json: name`
+	Email      string `json: email`
+	PictureUrl string `json: picture`
+	Name       string `json: name`
 	jwt.StandardClaims
 }
 
