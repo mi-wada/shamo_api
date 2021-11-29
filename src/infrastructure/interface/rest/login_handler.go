@@ -27,8 +27,8 @@ func Login(c echo.Context) (err error) {
 		)
 	}
 
-	sessionId := session_store.NewSessionStore().Set(userId)
-	cookie.WriteCookie(c, "", sessionId)
+	_ = session_store.NewSessionStore().Set(userId)
+	cookie.WriteCookie(c, "", userId)
 
 	// TODO: ログイン済みかチェックする
 

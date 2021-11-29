@@ -34,5 +34,5 @@ func (s *UserService) CreateUser(id, name, roomId, email, pictureUrl string) *en
 }
 
 func (s *UserService) Exist(id string) bool {
-	return true
+	return s.user_repository.Exist(id)
 }
