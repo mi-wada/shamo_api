@@ -2,6 +2,7 @@ package infrastructure
 
 import (
 	"api/infrastructure/interface/rest"
+	"api/infrastructure/interface/rest/rooms"
 	"fmt"
 	"net/http"
 	"os"
@@ -51,9 +52,9 @@ func (s *Server) setConfig() {
 func (s *Server) setRoutes() {
 	s.server.POST("/rooms", rest.CreateRoom)
 
-	s.server.GET("/rooms/:room_id/users", rest.GetUsers)
+	s.server.GET("/rooms/:room_id/users", rooms.GetUsers)
 
-	s.server.GET("/rooms/:room_id/payments", rest.GetPayments)
-	s.server.POST("/rooms/:room_id/payments", rest.CreatePayment)
-	s.server.DELETE("/rooms/:room_id/payments", rest.DeletePayment)
+	s.server.GET("/rooms/:room_id/payments", rooms.GetPayments)
+	s.server.POST("/rooms/:room_id/payments", rooms.CreatePayment)
+	s.server.DELETE("/rooms/:room_id/payments", rooms.DeletePayment)
 }

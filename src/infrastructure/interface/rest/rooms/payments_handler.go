@@ -1,4 +1,4 @@
-package rest
+package rooms
 
 import (
 	"api/application"
