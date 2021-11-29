@@ -8,7 +8,6 @@ import (
 	"api/infrastructure/session_store"
 	"net/http"
 
-	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 )
 
@@ -27,7 +26,7 @@ func Login(c echo.Context) (err error) {
 	}
 
 	sessionId := session_store.NewSessionStore().Set(userId)
-	cookie.WriteCookie(c, uuid.NewString(), sessionId)
+	cookie.WriteCookie(c, "", sessionId)
 
 	// TODO: ログイン済みかチェックする
 

@@ -10,6 +10,10 @@ import (
 const DEFAULT_COOKIE_KEY = "shamo_session"
 
 func WriteCookie(c echo.Context, key, value string) {
+	if key == "" {
+		key = DEFAULT_COOKIE_KEY
+	}
+
 	cookie := new(http.Cookie)
 	cookie.Name = key
 	cookie.Value = value
