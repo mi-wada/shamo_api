@@ -11,7 +11,6 @@ import (
 const CERTS_URL = "https://www.googleapis.com/oauth2/v1/certs"
 
 type CustomClaims struct {
-	UserId  string `json: sub`
 	Email   string `json: email`
 	Picture string `json: picture`
 	Name    string `json: name`

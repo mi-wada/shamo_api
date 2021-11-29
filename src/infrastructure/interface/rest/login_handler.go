@@ -13,7 +13,7 @@ import (
 
 func Login(c echo.Context) (err error) {
 	claims, _ := jwt.ParseIdToken(c.QueryParam("id_token"))
-	userId := claims.UserId
+	userId := claims.Subject
 
 	user_service := application.NewUserService(repository.NewUserRepository())
 
@@ -27,8 +27,8 @@ func Login(c echo.Context) (err error) {
 		)
 	}
 
-	_ = session_store.NewSessionStore().Set(userId)
-	cookie.WriteCookie(c, "", userId)
+	sessionId := session_store.NewSessionStore().Set(userId)
+	cookie.WriteCookie(c, "", sessionId)
 
 	// TODO: ログイン済みかチェックする
 
