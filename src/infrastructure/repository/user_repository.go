@@ -30,3 +30,10 @@ func (r *UserRepository) Save(user *entity.User) {
 
 	table.Put(user).Run()
 }
+
+func (r *UserRepository) Exist(id string) bool {
+	table := r.db.Table("shamo_user")
+
+	cnt, _ := table.Get("id", id).Count()
+	return cnt > 0
+}
