@@ -19,11 +19,13 @@ func (s *UserService) GetUserListByRoomId(roomId string) []entity.User {
 	return s.user_repository.GetListByRoomId(roomId)
 }
 
-func (s *UserService) CreateUser(id string, name string, roomId string) *entity.User {
+func (s *UserService) CreateUser(id, name, roomId, email, pictureUrl string) *entity.User {
 	user := entity.User{
-		Id:     id,
-		Name:   name,
-		RoomId: roomId,
+		Id:         id,
+		Name:       name,
+		RoomId:     roomId,
+		Email:      email,
+		PictureUrl: pictureUrl,
 	}
 
 	s.user_repository.Save(&user)

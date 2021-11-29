@@ -21,7 +21,9 @@ func Login(c echo.Context) (err error) {
 		user_service.CreateUser(
 			userId,
 			claims.Name,
-			"",
+			"", // TODO: 消去
+			claims.Email,
+			claims.Picture,
 		)
 	}
 
