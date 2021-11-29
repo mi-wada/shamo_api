@@ -2,7 +2,7 @@ package infrastructure
 
 import (
 	"api/infrastructure/interface/rest"
-	"api/infrastructure/interface/rest/rooms"
+	rest_rooms "api/infrastructure/interface/rest/rooms"
 	"fmt"
 	"net/http"
 	"os"
@@ -50,11 +50,13 @@ func (s *Server) setConfig() {
 }
 
 func (s *Server) setRoutes() {
+	s.server.GET("/login", rest.Login)
+
 	s.server.POST("/rooms", rest.CreateRoom)
 
-	s.server.GET("/rooms/:room_id/users", rooms.GetUsers)
+	s.server.GET("/rooms/:room_id/users", rest_rooms.GetUsers)
 
-	s.server.GET("/rooms/:room_id/payments", rooms.GetPayments)
-	s.server.POST("/rooms/:room_id/payments", rooms.CreatePayment)
-	s.server.DELETE("/rooms/:room_id/payments", rooms.DeletePayment)
+	s.server.GET("/rooms/:room_id/payments", rest_rooms.GetPayments)
+	s.server.POST("/rooms/:room_id/payments", rest_rooms.CreatePayment)
+	s.server.DELETE("/rooms/:room_id/payments", rest_rooms.DeletePayment)
 }

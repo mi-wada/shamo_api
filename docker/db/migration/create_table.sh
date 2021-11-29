@@ -9,7 +9,7 @@ aws dynamodb create-table \
     AttributeName=id,KeyType=HASH \
   --endpoint-url $ENDPOINT_URL \
   --provisioned-throughput \
-    ReadCapacityUnits=10,WriteCapacityUnits=5
+    ReadCapacityUnits=5,WriteCapacityUnits=5
 
 # create table `shamo_room`
 aws dynamodb create-table \
@@ -20,7 +20,7 @@ aws dynamodb create-table \
     AttributeName=id,KeyType=HASH \
   --endpoint-url $ENDPOINT_URL \
   --provisioned-throughput \
-    ReadCapacityUnits=10,WriteCapacityUnits=5
+    ReadCapacityUnits=5,WriteCapacityUnits=5
 
 # create table `shamo_room_member`
 aws dynamodb create-table \
@@ -33,7 +33,7 @@ aws dynamodb create-table \
     AttributeName=user_id,KeyType=RANGE \
   --endpoint-url $ENDPOINT_URL \
   --provisioned-throughput \
-    ReadCapacityUnits=10,WriteCapacityUnits=5
+    ReadCapacityUnits=5,WriteCapacityUnits=5
 
 # create table `shamo_payment`
 aws dynamodb create-table \
@@ -55,10 +55,28 @@ aws dynamodb create-table \
         \"ProjectionType\": \"ALL\"
       },
       \"ProvisionedThroughput\": {
-        \"ReadCapacityUnits\": 10,
+        \"ReadCapacityUnits\": 5,
         \"WriteCapacityUnits\": 5
       }
      }]" \
   --endpoint-url $ENDPOINT_URL \
   --provisioned-throughput \
-    ReadCapacityUnits=10,WriteCapacityUnits=5
+    ReadCapacityUnits=5,WriteCapacityUnits=5
+
+# create table `shamo_session`
+aws dynamodb create-table \
+  --table-name shamo_session \
+  --attribute-definitions \
+    AttributeName=id,AttributeType=S \
+  --key-schema \
+    AttributeName=id,KeyType=HASH \
+  --endpoint-url $ENDPOINT_URL \
+  --provisioned-throughput \
+    ReadCapacityUnits=5,WriteCapacityUnits=5
+
+# configure ttl for `shamo_session`
+aws dynamodb update-time-to-live \
+  --table-name shamo_session \
+  --time-to-live-specification \
+    "Enabled=true, AttributeName=ttl" \
+  --endpoint-url $ENDPOINT_URL \

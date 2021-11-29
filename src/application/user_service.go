@@ -30,3 +30,7 @@ func (s *UserService) CreateUser(id string, name string, roomId string) *entity.
 
 	return &user
 }
+
+func (s *UserService) Exist(id string) bool {
+	return true
+}
