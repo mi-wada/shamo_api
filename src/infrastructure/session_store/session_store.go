@@ -33,7 +33,7 @@ func (s SessionStore) GetUserId(sessionId string) (string, error) {
 		return "", err
 	}
 
-	return session.userId, nil
+	return session.UserId, nil
 }
 
 func (s SessionStore) Set(userId string) string {
@@ -41,9 +41,9 @@ func (s SessionStore) Set(userId string) string {
 
 	sessionId := uuid.NewString()
 	session := Session{
-		id:     sessionId,
-		userId: userId,
-		ttl:    int(time.Now().Unix()) + SESSION_TIMEOUT,
+		Id:     sessionId,
+		UserId: userId,
+		Ttl:    int(time.Now().Unix()) + SESSION_TIMEOUT,
 	}
 
 	table.Put(session).Run()
@@ -52,7 +52,7 @@ func (s SessionStore) Set(userId string) string {
 }
 
 type Session struct {
-	id     string `dynamo:"id"`
-	userId string `dynamo:"user_id"`
-	ttl    int    `dynamo:"ttl"`
+	Id     string `dynamo:"id"`
+	UserId string `dynamo:"user_id"`
+	Ttl    int    `dynamo:"ttl"`
 }
